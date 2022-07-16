@@ -22,13 +22,32 @@ The first 4 bits of the command are dedicated to encode the type of command itse
 
 ### Commands
 
-Below is the lsit of supported commands, with its integer representation and human-readable name:
+Below is the list of supported commands, with its integer representation and human-readable name:
 
-* 00 - broadcast: Order the server to broadcast the attached file to all the subscribers in the specified channel
+#### Subscribe - 00
+Subscribes to the server for a specific channel, listening to transferred files. Required Headers:
+```json
+{
+  "channel": "ch01"
+}
+```
 
-| Code | Name | Description | Headers |
-| ---- | ---- | ----------- | ------- |
-| 00 | subscribe | Subscribes to the server for a specific channel, listening to transferred files | {"channel": ch01} |
-| 01 | broadcast | Order the server to broadcast the attached file to all the subscribers in the specified channel | {"channel": ch01} |
-| 02 | ok | Ack a command that was processed successfully | |
-| 03 | error | Failed to process a command | {"message": "error happened for some reason"} |
+#### Broadcast - 01
+Order the server to broadcast the attached file to all the subscribers in the specified channel. Required Headers:
+```json
+{
+  "channel": "ch01"
+}
+```
+You must attach a file after the headers.
+
+#### Ok - 02
+Ack a command that was processed successfully.
+
+#### Error - 03
+Failed to process a command. Required Headers:
+```json
+{
+  "message": "error happened for some reason"
+}
+```
