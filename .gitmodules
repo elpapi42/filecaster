@@ -1,0 +1,3 @@
+[submodule "protocus"]
+	path = protocus
+	url = git@github.com:elpapi42/protocus.git
